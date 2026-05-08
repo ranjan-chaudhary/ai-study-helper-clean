@@ -50,3 +50,7 @@ button, input, select {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+::selection {
+  background: var(--accent-primary);
+  color: white;
+}
