@@ -81,10 +81,10 @@ def build_retriever(path):
     else:
         raise ValueError(f"Unsupported file format: {ext}")
 
-    # Use Recursive splitter for better word boundary handling
+    # Optimized chunking strategy for enhanced context retrieval
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000, 
-        chunk_overlap=100,
+        chunk_size=1500, 
+        chunk_overlap=150,
         separators=["\n\n", "\n", " ", ""]
     )
     docs = splitter.split_documents(docs)
