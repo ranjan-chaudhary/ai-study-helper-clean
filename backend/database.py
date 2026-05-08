@@ -37,7 +37,7 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 
-def add_user(email, username, password):
+def add_user(email: str, username: str, password: str) -> bool:
     try:
         hashed = hash_password(password)
         cursor.execute(
