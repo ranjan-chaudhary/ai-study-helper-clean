@@ -2,7 +2,7 @@ services:
   - type: web
     name: ai-study-helper-backend
     env: docker
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     region: ohio
     plan: free
@@ -19,7 +19,7 @@ services:
   - type: web
     name: ai-study-helper-frontend
     env: docker
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./frontend/Dockerfile
     dockerContext: ./frontend
     region: ohio
     plan: free
