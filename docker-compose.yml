@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env.example
+    volumes:
+      - ./backend/users.db:/app/users.db
+    ports:
+      - "8000:8000"
+    depends_on: []
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+networks:
+  default:
+    driver: bridge

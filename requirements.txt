@@ -11,3 +11,8 @@ tiktoken
 python-docx
 python-pptx
 groq
+fastapi
+uvicorn
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]

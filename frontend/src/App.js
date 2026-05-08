@@ -674,30 +674,41 @@ function App() {
       {/* Input */}
       <div 
         className={`input-area-wrapper ${isDragging ? 'dragging' : ''}`}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
-          <div className="input-box">
-            <input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder={uploadedFile ? `Ask about ${uploadedFile}...` : "Send a message..."}
-              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            />
-            <button 
-              className={`mic-btn ${isRecording ? 'recording' : ''}`}
-              onClick={toggleRecording}
-              title="Voice Typing"
-            >
-              🎤
-            </button>
-            <button onClick={() => sendMessage()} disabled={!input.trim()}>
-              ➤
-            </button>
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
+        {uploadedFile && (
+          <div className="active-doc-badge">
+            <span className="doc-icon">📄</span>
+            <span className="doc-name">{uploadedFile}</span>
+            <button className="remove-doc" onClick={() => setUploadedFile(null)} title="Clear Document">×</button>
           </div>
+        )}
+        <div className="input-box">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={uploadedFile ? `Ask anything about ${uploadedFile}...` : "Type your question here..."}
+            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          />
+          <button 
+            className={`mic-btn ${isRecording ? 'recording' : ''}`}
+            onClick={toggleRecording}
+            title="Voice Typing"
+          >
+            🎤
+          </button>
+          <button 
+            className="send-btn"
+            onClick={() => sendMessage()} 
+            disabled={!input.trim()}
+          >
+            ➤
+          </button>
         </div>
       </div>
+    </div>
 
       {/* Camera Modal */}
       {isCameraOpen && (
