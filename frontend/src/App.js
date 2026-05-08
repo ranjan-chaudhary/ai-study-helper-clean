@@ -192,12 +192,13 @@ function App() {
     a.click();
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     fetchSessions();
     if (!currentSessionId) {
       setCurrentSessionId(generateId());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderMarkdown = (text) => {
@@ -478,9 +479,9 @@ function App() {
     }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     scrollToBottom();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
   return (
