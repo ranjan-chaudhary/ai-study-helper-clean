@@ -3,6 +3,8 @@ langchain
 langchain-community
 langchain-huggingface
 langchain-groq
+pytest
+httpx
 faiss-cpu
 python-dotenv
 pypdf
