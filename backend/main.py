@@ -1,3 +1,7 @@
+"""
+ANTIGRAVITY Backend API
+Main entry point for the FastAPI application.
+"""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -25,3 +29,9 @@ app.include_router(pdf.router, prefix="/pdf")
 @app.get("/")
 def home():
     return {"message": "Backend running ✅"}
+
+
+@app.get("/health")
+def health_check():
+    """Service health check endpoint."""
+    return {"status": "healthy", "service": "ANTIGRAVITY Backend"}
