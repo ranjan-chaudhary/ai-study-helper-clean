@@ -30,7 +30,6 @@ function App() {
   // Enterprise Edition State
   const [tutorPersona, setTutorPersona] = useState("Supportive Peer");
   const [showDashboard, setShowDashboard] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const [currentlyReading, setCurrentlyReading] = useState(null);
   const [autoScroll, setAutoScroll] = useState(true);
 
@@ -143,10 +142,7 @@ function App() {
     window.speechSynthesis.speak(utterance);
   };
 
-  const toggleGlobalMute = () => {
-    if (!isMuted) window.speechSynthesis.cancel();
-    setIsMuted(!isMuted);
-  };
+
 
   const getFlashcards = async (context) => {
     try {
@@ -196,11 +192,13 @@ function App() {
     a.click();
   };
 
+
   useEffect(() => {
     fetchSessions();
     if (!currentSessionId) {
       setCurrentSessionId(generateId());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderMarkdown = (text) => {
@@ -208,8 +206,6 @@ function App() {
     
     // Simple custom regex-based markdown parser for "Pro" feel
     const lines = text.split('\n');
-    let inList = false;
-    let listType = null;
 
     return lines.map((line, idx) => {
       // Bold
@@ -485,6 +481,7 @@ function App() {
 
   useEffect(() => {
     scrollToBottom();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
   return (
@@ -674,41 +671,30 @@ function App() {
       {/* Input */}
       <div 
         className={`input-area-wrapper ${isDragging ? 'dragging' : ''}`}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        {uploadedFile && (
-          <div className="active-doc-badge">
-            <span className="doc-icon">📄</span>
-            <span className="doc-name">{uploadedFile}</span>
-            <button className="remove-doc" onClick={() => setUploadedFile(null)} title="Clear Document">×</button>
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          <div className="input-box">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder={uploadedFile ? `Ask about ${uploadedFile}...` : "Send a message..."}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            />
+            <button 
+              className={`mic-btn ${isRecording ? 'recording' : ''}`}
+              onClick={toggleRecording}
+              title="Voice Typing"
+            >
+              🎤
+            </button>
+            <button onClick={() => sendMessage()} disabled={!input.trim()}>
+              ➤
+            </button>
           </div>
-        )}
-        <div className="input-box">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={uploadedFile ? `Ask anything about ${uploadedFile}...` : "Type your question here..."}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          />
-          <button 
-            className={`mic-btn ${isRecording ? 'recording' : ''}`}
-            onClick={toggleRecording}
-            title="Voice Typing"
-          >
-            🎤
-          </button>
-          <button 
-            className="send-btn"
-            onClick={() => sendMessage()} 
-            disabled={!input.trim()}
-          >
-            ➤
-          </button>
         </div>
       </div>
-    </div>
 
       {/* Camera Modal */}
       {isCameraOpen && (

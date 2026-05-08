@@ -3,6 +3,12 @@ langchain
 langchain-community
 langchain-huggingface
 langchain-groq
+fastapi
+uvicorn
+pydantic
+python-jose[cryptography]
+pytest
+httpx
 faiss-cpu
 python-dotenv
 pypdf

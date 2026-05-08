@@ -34,8 +34,10 @@ async def upload(file: UploadFile, session_id: Optional[str] = None):
         if not os.path.exists(upload_dir):
             os.makedirs(upload_dir)
             
-        # Create unique filename
-        filename = f"{int(time.time())}_{file.filename}"
+        # Create unique, sanitized filename
+        import re
+        safe_filename = re.sub(r'[^a-zA-Z0-9.-]', '_', file.filename)
+        filename = f"{int(time.time())}_{safe_filename}"
         path = os.path.join(upload_dir, filename)
 
         with open(path, "wb") as f:
