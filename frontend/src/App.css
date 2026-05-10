@@ -1158,3 +1158,10 @@
 @media (max-width: 768px) {
   .sidebar { height: 100% !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch; }
 }
+
+/* Inline Upload Button Styles */
+.upload-inline-btn { background: rgba(255, 255, 255, 0.05) !important; color: var(--text-secondary) !important; font-size: 1.1rem !important; }
+.upload-inline-btn:hover { background: rgba(255, 255, 255, 0.1) !important; color: var(--text-primary) !important; }
+@media (max-width: 768px) {
+  .upload-inline-btn { display: flex !important; }
+}

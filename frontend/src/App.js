@@ -700,6 +700,20 @@ function App() {
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             />
             <button 
+              className="upload-inline-btn"
+              onClick={() => document.getElementById('mobile-upload-input').click()}
+              title="Upload File"
+            >
+              📎
+              <input 
+                id="mobile-upload-input"
+                type="file" 
+                accept=".pdf,.doc,.docx,.ppt,.pptx,image/*" 
+                onChange={handleFileUpload} 
+                style={{ display: 'none' }}
+              />
+            </button>
+            <button 
               className={`mic-btn ${isRecording ? 'recording' : ''}`}
               onClick={toggleRecording}
               title="Voice Typing"
