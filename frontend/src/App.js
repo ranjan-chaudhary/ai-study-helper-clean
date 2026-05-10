@@ -45,7 +45,7 @@ function App() {
   const typingQueueRef = useRef(new Queue());
   const typingIntervalRef = useRef(null);
 
-  const API = "http://127.0.0.1:8000";
+  const API = process.env.REACT_APP_BACKEND_URL || "https://ai-study-helper-backend.onrender.com";
 
   const fetchSessions = async (currentSort = sortMethod) => {
     try {
