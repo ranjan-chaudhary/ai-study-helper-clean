@@ -1153,3 +1153,8 @@
   .input-area-wrapper { padding: 20px 12px 24px 12px !important; }
   .input-box { border-radius: 20px !important; }
 }
+
+/* Sidebar Scroll Fix */
+@media (max-width: 768px) {
+  .sidebar { height: 100% !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch; }
+}
