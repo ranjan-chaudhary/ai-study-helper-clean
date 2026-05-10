@@ -474,13 +474,14 @@ function App() {
 
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
-    const isAtBottom = scrollHeight - scrollTop <= clientHeight + 50;
+    // Increased threshold and added more precise detection
+    const isAtBottom = scrollHeight - scrollTop <= clientHeight + 100;
     setAutoScroll(isAtBottom);
   };
 
-  const scrollToBottom = () => {
-    if (autoScroll && chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+  const scrollToBottom = (force = false) => {
+    if ((autoScroll || force) && chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: force ? "smooth" : "auto" });
     }
   };
 
