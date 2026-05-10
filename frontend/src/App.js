@@ -12,6 +12,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isUploading, setIsUploading] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   
   const [sessions, setSessions] = useState([]);
@@ -244,6 +245,7 @@ function App() {
     setMessages(newMsgs);
 
     if (!customMessage) setInput("");
+    setIsSending(true);
 
     try {
       let sessionId = currentSessionId;
@@ -262,6 +264,7 @@ function App() {
         session_id: sessionId,
         persona: tutorPersona
       });
+      setIsSending(false);
 
       // DSA: Typing Effect using Queue
       const botText = res.data.answer;
@@ -312,6 +315,7 @@ function App() {
 
     } catch (err) {
       console.error(err);
+      setIsSending(false);
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: "❌ Error: Could not connect to server." },
@@ -692,6 +696,18 @@ function App() {
               </div>
             </div>
           ))}
+          {isSending && (
+            <div className="message assistant thinking">
+              <div className="avatar">✨</div>
+              <div className="msg-content">
+                <div className="bubble">
+                  <div className="typing-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
           <div ref={chatEndRef} />
         </div>
       )}

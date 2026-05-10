@@ -1173,3 +1173,10 @@
 .loader-card h3 { color: white; margin-bottom: 12px; font-size: 1.2rem; }
 .loader-card p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Typing Dots Animation */
+.typing-dots { display: flex; gap: 4px; align-items: center; height: 20px; }
+.typing-dots span { width: 6px; height: 6px; background: #94a3b8; border-radius: 50%; animation: dotPulse 1.4s infinite; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dotPulse { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
