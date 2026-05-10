@@ -28,7 +28,12 @@ app.include_router(pdf.router, prefix="/pdf")
 # ---------------- TEST ----------------
 @app.get("/")
 def home():
-    return {"message": "Backend running ✅"}
+    return {"message": "ANTIGRAVITY Backend - v2 (FastEmbed) ✅"}
+
+
+@app.get("/version")
+def version():
+    return {"version": "2.0.0", "engine": "FastEmbed"}
 
 
 @app.get("/health")
