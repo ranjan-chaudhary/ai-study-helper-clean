@@ -487,6 +487,17 @@ function App() {
 
   return (
     <div className={`app ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      {/* Uploading Overlay */}
+      {isUploading && (
+        <div className="upload-overlay">
+          <div className="loader-card">
+            <div className="spinner"></div>
+            <h3>Processing Document...</h3>
+            <p>Our AI is analyzing your material. This will take just a moment.</p>
+          </div>
+        </div>
+      )}
+
       {/* Mobile Header */}
       <div className="mobile-header">
         <button className="menu-toggle" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>

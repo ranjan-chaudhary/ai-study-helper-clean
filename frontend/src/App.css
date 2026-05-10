@@ -1165,3 +1165,11 @@
 @media (max-width: 768px) {
   .upload-inline-btn { display: flex !important; }
 }
+
+/* Upload Overlay */
+.upload-overlay { position: fixed; inset: 0; background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px); z-index: 2000; display: flex; justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
+.loader-card { background: #1e293b; padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; max-width: 300px; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); }
+.spinner { width: 50px; height: 50px; border: 4px solid rgba(99, 102, 241, 0.1); border-top: 4px solid var(--accent-primary); border-radius: 50%; margin: 0 auto 24px; animation: spin 1s linear infinite; }
+.loader-card h3 { color: white; margin-bottom: 12px; font-size: 1.2rem; }
+.loader-card p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
