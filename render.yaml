@@ -27,3 +27,5 @@ services:
           type: web
           name: ai-study-helper-backend
           envVarKey: RENDER_EXTERNAL_URL
+      - key: PORT
+        value: 80

@@ -1,6 +1,6 @@
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from langchain_core.messages import HumanMessage
@@ -64,7 +64,8 @@ def extract_image_text(path):
     return [Document(page_content=response.content)]
 
 # Pre-load embeddings model at module level for speed
-embeddings_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+# Using FastEmbed for low-memory environments (Render Free Tier)
+embeddings_model = FastEmbedEmbeddings(model_name="BAAI/bge-small-en-v1.5")
 
 def build_retriever(path):
     ext = os.path.splitext(path)[1].lower()

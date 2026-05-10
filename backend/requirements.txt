@@ -1,7 +1,5 @@
-streamlit
 langchain
 langchain-community
-langchain-huggingface
 langchain-groq
 fastapi
 uvicorn
@@ -12,13 +10,10 @@ httpx
 faiss-cpu
 python-dotenv
 pypdf
-sentence-transformers
+fastembed
 tiktoken
 python-docx
 python-pptx
 groq
-fastapi
-uvicorn
 python-multipart
-python-jose[cryptography]
 passlib[bcrypt]
