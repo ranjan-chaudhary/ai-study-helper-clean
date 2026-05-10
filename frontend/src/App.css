@@ -1141,3 +1141,15 @@
     padding-right: 5%;
   }
 }
+/* Mobile Header */
+.mobile-header { display: none; position: fixed; top: 0; left: 0; right: 0; height: 60px; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 500; padding: 0 16px; align-items: center; justify-content: space-between; }
+.menu-toggle { background: transparent; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 8px; display: flex; align-items: center; }
+.sidebar-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 600; }
+@media (max-width: 768px) {
+  .mobile-header { display: flex; }
+  .sidebar { position: fixed !important; left: -320px !important; top: 0 !important; width: 280px !important; z-index: 700 !important; transition: transform 0.4s ease !important; background: #0f172a !important; display: flex !important; padding-top: 80px !important; }
+  .sidebar.open { transform: translateX(320px) !important; }
+  .chat-box { padding: 80px 16px 140px 16px !important; gap: 24px !important; }
+  .input-area-wrapper { padding: 20px 12px 24px 12px !important; }
+  .input-box { border-radius: 20px !important; }
+}

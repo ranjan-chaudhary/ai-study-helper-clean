@@ -32,6 +32,7 @@ function App() {
   const [showDashboard, setShowDashboard] = useState(false);
   const [currentlyReading, setCurrentlyReading] = useState(null);
   const [autoScroll, setAutoScroll] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [isRecording, setIsRecording] = useState(false);
   const mediaRecorderRef = useRef(null);
@@ -485,9 +486,25 @@ function App() {
   }, [messages]);
 
   return (
-    <div className="app">
+    <div className={`app ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      {/* Mobile Header */}
+      <div className="mobile-header">
+        <button className="menu-toggle" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+          {isSidebarOpen ? "✕" : "☰"}
+        </button>
+        <span className="logo">✨ Study Helper</span>
+        <div className="mobile-actions">
+           <button onClick={() => setShowDashboard(!showDashboard)}>
+             {showDashboard ? "💬" : "📊"}
+           </button>
+        </div>
+      </div>
+
+      {/* Overlay for mobile sidebar */}
+      {isSidebarOpen && <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>}
+
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <h2>✨ AI Study Helper</h2>
         <button className="new-chat" onClick={startNewChat}>
           + New Chat
