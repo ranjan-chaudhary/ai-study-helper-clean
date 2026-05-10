@@ -5,7 +5,10 @@ WORKDIR /app
 
 # Install system dependencies (if any)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential && rm -rf /var/lib/apt/lists/*
+    build-essential \
+    libgomp1 \
+    libopenblas-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Python packages
 COPY requirements.txt .
